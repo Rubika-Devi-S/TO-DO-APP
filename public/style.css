@@ -1,0 +1,308 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, hsl(61, 69%, 79%) 0%, #ead998 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+#container {
+  background: rgba(223, 217, 217, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 25px;
+  padding: 40px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: translateY(20px);
+  animation: slideInUp 0.8s ease-out forwards;
+}
+
+@keyframes slideInUp {
+  to {
+    transform: translateY(0);
+  }
+}
+
+h1 {
+  text-align: center;
+  background: linear-gradient(45deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease infinite, bounceIn 1s ease-out;
+  margin-bottom: 30px;
+  font-size: 2.5em;
+  font-weight: 700;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+#taskinput {
+  flex: 1;
+  min-width: 200px;
+  padding: 15px 20px;
+  border: 3px solid transparent;
+  border-radius: 50px;
+  font-size: 16px;
+  outline: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+#taskinput:hover,
+#taskinput:focus {
+  border-color: #ff6b6b;
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 1);
+}
+
+button {
+  flex-shrink: 0;
+  padding: 15px 25px;
+  border: none;
+  border-radius: 50px;
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+  white-space: nowrap;
+}
+
+button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 20px 40px rgba(255, 107, 107, 0.6);
+  background: linear-gradient(45deg, #feca57, #ff6b6b);
+}
+
+button:active {
+  transform: translateY(-2px) scale(1.02);
+}
+
+#todolist {
+  list-style: none;
+  margin-top: 30px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+#todolist li {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9),
+    rgba(248, 249, 250, 0.9)
+  );
+  margin: 12px 0;
+  padding: 18px 25px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+#todolist li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
+  transition: left 0.6s;
+}
+
+#todolist li:hover::before {
+  left: 100%;
+}
+
+#todolist li:hover {
+  transform: translateX(10px) scale(1.02);
+  border-color: #c4d5d8;
+  box-shadow: 0 20px 40px rgba(72, 219, 251, 0.3);
+}
+
+#todolist li:nth-child(odd) {
+  animation-delay: 0.1s;
+}
+
+#todolist li:nth-child(even) {
+  animation-delay: 0.2s;
+}
+
+.delete-btn {
+  background: linear-gradient(45deg, #ff4757, #ff3838);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(255, 71, 87, 0.4);
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-btn:hover {
+  transform: scale(1.2) rotate(90deg);
+  box-shadow: 0 10px 25px rgba(255, 71, 87, 0.6);
+}
+
+/* Completed task styling */
+.completed {
+  opacity: 0.7;
+  text-decoration: line-through;
+  background: linear-gradient(
+    135deg,
+    rgba(72, 219, 251, 0.2),
+    rgba(255, 107, 107, 0.1)
+  ) !important;
+}
+
+.completed:hover {
+  border-color: #48dbfb !important;
+}
+
+/* Additional animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  #container {
+    padding: 30px 20px;
+    margin: 10px;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  .input-container {
+    flex-direction: column;
+  }
+
+  #taskinput {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Custom scrollbar */
+#todolist::-webkit-scrollbar {
+  width: 6px;
+}
+
+#todolist::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+}
+
+#todolist::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #ff6b6b, #feca57);
+  border-radius: 10px;
+}
+
+#todolist::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #feca57, #ff6b6b);
+}
